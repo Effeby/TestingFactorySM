@@ -83,8 +83,6 @@
               <tr>
                 <th>NOM & PRÉNOM</th>
                 <th>LOGIN</th>
-                <th>MOT DE PASSE</th>
-                <th>Show/copy</th> <!-- Colonne actions mot de passe -->
                 <th>Actions</th>
               </tr>
             </thead>
@@ -93,17 +91,7 @@
               <tr>
                 <td class="fw-bold align-middle" rowspan="2">Durand Alice</td>
                 <td>alice.cbs1</td>
-                <td>
-                  <span class="password-mask" id="pwd-1" data-password="pass1alice">••••••••</span>
-                </td>
-                <td>
-                  <button class="btn btn-link p-0 me-2" title="Voir le mot de passe" onclick="togglePassword('pwd-1', this)">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button class="btn btn-link p-0" title="Copier le mot de passe" onclick="copyPassword('pwd-1', this)">
-                    <i class="bi bi-clipboard"></i>
-                  </button>
-                </td>
+
                 <td class="align-middle">
                   <div class="d-flex justify-content-center gap-2">
                     <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modifyCbsModal">
@@ -118,17 +106,7 @@
               <tr>
                 <!-- Pas de nom/prénom ici, juste login/mdp/actions -->
                 <td>alice.cbs2</td>
-                <td>
-                  <span class="password-mask" id="pwd-2" data-password="pass2alice">••••••••</span>
-                </td>
-                <td>
-                  <button class="btn btn-link p-0 me-2" title="Voir le mot de passe" onclick="togglePassword('pwd-2', this)">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button class="btn btn-link p-0" title="Copier le mot de passe" onclick="copyPassword('pwd-2', this)">
-                    <i class="bi bi-clipboard"></i>
-                  </button>
-                </td>
+                
                 <td class="align-middle">
                   <div class="d-flex justify-content-center gap-2">
                     <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modifyCbsModal">

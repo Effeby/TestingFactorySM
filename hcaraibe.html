@@ -83,8 +83,6 @@
               <tr>
                 <th>NOM & PRÉNOM</th>
                 <th>LOGIN</th>
-                <th>MOT DE PASSE</th>
-                <th>Show/copy</th> <!-- Colonne actions mot de passe -->
                 <th>Actions</th>
               </tr>
             </thead>
@@ -92,17 +90,7 @@
               <tr>
                 <td class="fw-bold">Durand Alice</td>
                 <td>alice.durand</td>
-                <td>
-                  <span class="password-mask" id="pwd-1" data-password="alicepass">••••••••</span>
-                </td>
-                <td>
-                  <button class="btn btn-link p-0 me-2" title="Voir le mot de passe" onclick="togglePassword('pwd-1', this)">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button class="btn btn-link p-0" title="Copier le mot de passe" onclick="copyPassword('pwd-1', this)">
-                    <i class="bi bi-clipboard"></i>
-                  </button>
-                </td>
+
                 <td>
                   <div class="d-flex justify-content-center gap-2">
                     <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modifyHcaraibeModal">
