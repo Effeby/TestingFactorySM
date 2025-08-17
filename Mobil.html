@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accès mobile — Server Monitoring</title>
+
+  <!-- Font (optionnelle) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #0f172a;
+      --bg-2: #0b1220;
+      --accent: #ef4444; /* rouge SG */
+      --muted: #6b7280;
+      --glass: rgba(255,255,255,0.06);
+      --card-bg: #ffffff;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      color: #0f172a;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    /* Container */
+    .mobile-wrap{
+      width:100%;
+      max-width:720px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+
+    .card {
+      width:100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+      border-radius:20px;
+      box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+      padding:28px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Left column : content */
+    .card .content {
+      flex:1;
+      padding-right:10px;
+    }
+    .eyebrow {
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+    .title {
+      font-size:22px;
+      font-weight:700;
+      color: #0b1220;
+      margin-bottom:10px;
+    }
+    .desc {
+      color:#334155;
+      line-height:1.45;
+      margin-bottom:18px;
+    }
+
+    /* CTA buttons */
+    .actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn {
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:14px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn.primary {
+      background: linear-gradient(90deg, #ef4444, #f97316); /* rouge -> orange */
+      color:white;
+      box-shadow: 0 8px 18px rgba(239,68,68,0.18);
+      border: none;
+    }
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid rgba(11,18,32,0.06);
+      color:#0f172a;
+    }
+
+    /* Illustration on right */
+    .illustration{
+      width:180px;
+      max-width:36%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .illustration svg{ width:100%; height:auto; display:block; }
+
+    /* subtle animated background blobs */
+    .card::before, .card::after{
+      content:'';
+      position:absolute;
+      border-radius:50%;
+      filter: blur(40px);
+      opacity:0.12;
+      pointer-events:none;
+    }
+    .card::before{
+      width:220px;height:220px; right:-60px; top:-60px;
+      background: radial-gradient(circle at 30% 30%, #f97316, transparent 40%);
+    }
+    .card::after{
+      width:160px;height:160px; left:-40px; bottom:-40px;
+      background: radial-gradient(circle at 70% 70%, #ef4444, transparent 40%);
+      opacity:0.09;
+    }
+
+    /* tiny helper */
+    .small {
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width:720px){
+      .card { flex-direction:column; gap:18px; padding:22px; border-radius:16px; }
+      .illustration{ width:140px; max-width:100% }
+      .title { font-size:20px; text-align:center; }
+      .content { text-align:center; padding:0; }
+      .actions { justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-wrap">
+    <div class="card" role="dialog" aria-labelledby="mobile-title" aria-describedby="mobile-desc">
+      <div class="content">
+        <div class="eyebrow">📱 Accès mobile détecté</div>
+        <div id="mobile-title" class="title">Ce site est optimisé pour un écran d'ordinateur</div>
+        <div id="mobile-desc" class="desc">
+          Pour profiter pleinement des fonctionnalités de ce site, ouvre la page depuis un ordinateur.
+        </div>
+
+        <div class="actions" role="group" aria-label="Actions">
+            <a href="javascript:history.back()" class="btn ghost" title="Retour">← Retour</a>
+            <button id="quitBtn" class="btn primary" title="Quitter">Quitter</button>
+            </div>
+
+            <!-- Message fallback si la fermeture est bloquée -->
+            <div id="close-failed" style="display:none; margin-top:12px; color:#7f1d1d;">
+            Impossible de fermer automatiquement l'onglet. Veuillez <strong>fermer l'onglet</strong> manuellement.
+        </div>
+
+        
+
+        <div style="margin-top:14px" class="small">Astuce : pour accéder au site, utilisez un desktop et tapez <code>login.html</code> dans l'URL.</div>
+      </div>
+
+      <div class="illustration" aria-hidden="true">
+        <!-- Simple SVG illustration (phone + warning) -->
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration téléphone">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#ffedd5"/>
+              <stop offset="1" stop-color="#fee2e2"/>
+            </linearGradient>
+          </defs>
+          <rect x="48" y="18" width="104" height="164" rx="18" fill="url(#g1)"/>
+          <rect x="60" y="34" width="80" height="120" rx="8" fill="#fff"/>
+          <circle cx="100" cy="154" r="6" fill="#ef4444"/>
+          <g transform="translate(78,50)">
+            <rect x="0" y="0" width="44" height="44" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+            <path d="M7 7 L37 37 M37 7 L7 37" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
